@@ -1,33 +1,20 @@
+// index.mjs
+// PUNTO DE ENTRADA DEL PROGRAMA
 
-import fsp from 'node:fs/promises'
-import path from 'node:path'
-
+// Importamos las funciones desde los módulos
+import { dataExtractor } from './modules/dataExtractor.mjs';
+import { readerAndWriter } from './modules/readerAndWriter.mjs';
 
 try {
-    const respuesta= await fetch('https://api.escuelajs.co/api/v1/users')
-     const usuarios= await respuesta.json()
+    // PASO 1: Buscar datos en la API y formatearlos
+    const usuariosFormateados = await dataExtractor();
 
-     const usuariosModificados= usuarios.map((usuario)=>{
-        const usuariosModificado ={
-            id : usuario.id ,
-            email:usuario.email,
-            nombre:usuario.name,
-        } 
+    // PASO 2: Guardar en archivo local y leerlos
+    const usuariosLocales = await readerAndWriter(usuariosFormateados);
 
-        return usuariosModificado
+    // PASO 3: Imprimir por consola
+    console.log(usuariosLocales);
 
-         
-     })
-
-     const ruta = path.resolve('usuarios.json')
-     const datosJeson = JSON.stringify(usuariosModificados,null,4)
-     await fsp.writeFile(ruta,datosJeson)
-     
-    const usurarioslocales = await fsp.readFile(ruta,'utf8')
-     console .log(usurarioslocales)
-
-     
-    }catch(error){
-   console.log(error)
-
+} catch (error) {
+    console.log(`Error general: ${error.message}`);
 }
