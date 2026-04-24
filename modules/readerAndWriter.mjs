@@ -1,4 +1,4 @@
-// modules/readerAndWriter.mjs
+
 // MÓDULO DE LECTURA Y ESCRITURA DE ARCHIVOS
 
 import fsp from 'node:fs/promises';

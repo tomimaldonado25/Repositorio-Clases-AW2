@@ -1,4 +1,4 @@
-// index.mjs
+
 // PUNTO DE ENTRADA DEL PROGRAMA
 
 // Importamos las funciones desde los módulos

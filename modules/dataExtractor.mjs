@@ -1,4 +1,4 @@
-// modules/dataExtractor.mjs
+
 // MÓDULO DE OBTENCIÓN DE DATOS VÍA PETICIÓN
 
 async function dataExtractor() {
